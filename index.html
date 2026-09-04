@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>クソアプリ・ハッカソン・シミュレーター</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+  <header class="header">
+    <h1>💩 クソアプリ・ハッカソン・シミュレーター 💩</h1>
+    <p class="subtitle">あなたの「くだらないアイデア」を、AI審査員がガチで評価します。</p>
+  </header>
+
+  <main>
+    <section id="form-section" class="card">
+      <h2>エントリーシート</h2>
+      <form id="pitch-form">
+        <div class="form-group">
+          <label for="app-name">アプリ名</label>
+          <input type="text" id="app-name" placeholder="例：貼るだけで会議が終わるアプリ「ハラナカ」" required>
+        </div>
+
+        <div class="form-group">
+          <label for="app-summary">アプリの概要</label>
+          <textarea id="app-summary" rows="3" placeholder="例：スマホをお腹に貼ると空腹度をSlackに通知する。それだけ。" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="app-pitch">プレゼン内容（実用性の強引な主張）</label>
+          <textarea id="app-pitch" rows="5" placeholder="例：これにより「今日イチのラーメンを誰よりも早く感知できる」ため、行列社会に革命が起きます。医療費も削減されます。たぶん。" required></textarea>
+        </div>
+
+        <button type="submit" id="submit-btn">
+          <span class="btn-text">審査員にプレゼンする</span>
+        </button>
+      </form>
+    </section>
+
+    <section id="loading-section" class="card hidden">
+      <div class="loader"></div>
+      <p id="loading-message">審査員が真顔で聞いています...</p>
+    </section>
+
+    <section id="result-section" class="card hidden">
+      <h2>審査結果</h2>
+      <div class="score-wrap">
+        <div class="score-circle" id="score-circle">
+          <span id="score-value">0</span>
+          <span class="score-unit">点</span>
+        </div>
+        <p id="score-rank" class="score-rank"></p>
+      </div>
+      <div class="comment-box">
+        <p class="comment-label">🎙️ 審査員コメント</p>
+        <p id="comment-text"></p>
+      </div>
+      <button id="retry-btn">もう一度挑戦する</button>
+    </section>
+
+    <section id="error-section" class="card hidden">
+      <p>⚠️ 審査中にエラーが発生しました。時間をおいて再度お試しください。</p>
+      <p id="error-detail" class="error-detail"></p>
+      <button id="error-retry-btn">戻る</button>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Powered by Gemini API / GAS / GitHub Pages</p>
+  </footer>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
