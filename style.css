@@ -172,3 +172,194 @@ button:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
   font-size: 0.75rem;
   margin-top: 30px;
 }
+
+/* ===== ナビバー ===== */
+.navbar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.nav-guest, .nav-member {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.nav-btn {
+  width: auto;
+  padding: 8px 14px;
+  font-size: 0.85rem;
+  background: #33335a;
+  color: var(--text);
+}
+
+.nav-btn-primary {
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  color: #1a1a2e;
+}
+
+.nav-btn-ghost {
+  background: transparent;
+  border: 1px solid #444466;
+}
+
+.nav-nickname {
+  color: var(--accent2);
+  font-size: 0.85rem;
+  font-weight: bold;
+  margin-right: 4px;
+}
+
+/* ===== 認証フォーム ===== */
+.auth-switch {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-sub);
+  margin-top: 14px;
+}
+
+.auth-switch a {
+  color: var(--accent2);
+}
+
+.form-group-checkbox label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: normal;
+  color: var(--text);
+  font-size: 0.85rem;
+}
+
+.form-group-checkbox input {
+  width: auto;
+}
+
+.auth-message {
+  margin-top: 14px;
+  padding: 10px;
+  border-radius: 8px;
+  background: #1f3a2a;
+  color: #a8e6b0;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.auth-message-error {
+  background: #3a1f1f;
+  color: #ff9e9e;
+}
+
+/* ===== マイページ / エントリー一覧 ===== */
+.entry-card {
+  background: #14142a;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 14px;
+  border: 1px solid #33335a;
+}
+
+.entry-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.entry-score {
+  background: var(--accent);
+  color: #1a1a2e;
+  font-weight: bold;
+  padding: 2px 10px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+}
+
+.entry-name {
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.entry-summary, .entry-pitch {
+  font-size: 0.85rem;
+  color: var(--text-sub);
+  margin: 4px 0;
+}
+
+.entry-comment {
+  font-size: 0.85rem;
+  margin: 8px 0;
+  line-height: 1.5;
+}
+
+.entry-date {
+  font-size: 0.72rem;
+  color: #6a6a8a;
+  margin-bottom: 10px;
+}
+
+.entry-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.entry-actions button {
+  width: auto;
+  padding: 8px 16px;
+  font-size: 0.8rem;
+}
+
+.btn-secondary {
+  background: #33335a;
+  color: var(--text);
+}
+
+.btn-danger-outline {
+  background: transparent;
+  border: 1px solid #ff6b6b;
+  color: #ff6b6b;
+}
+
+#withdraw-btn {
+  width: 100%;
+  padding: 12px;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid #33335a;
+  margin: 24px 0 16px;
+}
+
+/* ===== 編集モーダル ===== */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 100;
+}
+
+.modal-content {
+  max-width: 480px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.modal-actions button {
+  flex: 1;
+}

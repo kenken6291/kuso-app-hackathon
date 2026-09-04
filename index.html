@@ -14,8 +14,100 @@
     <p class="subtitle">あなたの「くだらないアイデア」を、AI審査員がガチで評価します。</p>
   </header>
 
+  <nav class="navbar" id="navbar">
+    <div class="nav-guest" id="nav-guest">
+      <button class="nav-btn" id="nav-login-btn">ログイン</button>
+      <button class="nav-btn nav-btn-primary" id="nav-register-btn">新規登録</button>
+    </div>
+    <div class="nav-member hidden" id="nav-member">
+      <span class="nav-nickname" id="nav-nickname"></span>
+      <button class="nav-btn" id="nav-mypage-btn">マイページ</button>
+      <button class="nav-btn" id="nav-home-btn">審査に戻る</button>
+      <button class="nav-btn nav-btn-ghost" id="nav-logout-btn">ログアウト</button>
+    </div>
+  </nav>
+
   <main>
-    <section id="form-section" class="card">
+
+    <!-- ===== ログイン/新規登録 ===== -->
+    <section id="auth-section" class="card">
+      <div id="login-view">
+        <h2>ログイン</h2>
+        <form id="login-form">
+          <div class="form-group">
+            <label for="login-email">メールアドレス</label>
+            <input type="email" id="login-email" required>
+          </div>
+          <div class="form-group">
+            <label for="login-password">パスワード</label>
+            <input type="password" id="login-password" required>
+          </div>
+          <button type="submit">ログイン</button>
+        </form>
+        <p class="auth-switch">
+          <a href="#" id="show-forgot">パスワードを忘れた方はこちら</a>
+        </p>
+        <p class="auth-switch">
+          会員登録がまだの方は <a href="#" id="show-register">新規登録</a>
+        </p>
+      </div>
+
+      <div id="register-view" class="hidden">
+        <h2>新規登録</h2>
+        <form id="register-form">
+          <div class="form-group">
+            <label for="register-email">メールアドレス</label>
+            <input type="email" id="register-email" required>
+          </div>
+          <div class="form-group">
+            <label for="register-nickname">ニックネーム</label>
+            <input type="text" id="register-nickname" required>
+          </div>
+          <div class="form-group form-group-checkbox">
+            <label>
+              <input type="checkbox" id="register-agree" required>
+              <a href="legal/terms.html" target="_blank">利用規約・免責事項</a>に同意する
+            </label>
+          </div>
+          <button type="submit">登録する（仮パスワードをメール送信）</button>
+        </form>
+        <p class="auth-switch">既に会員の方は <a href="#" id="show-login">ログイン</a></p>
+      </div>
+
+      <div id="forgot-view" class="hidden">
+        <h2>パスワード再発行</h2>
+        <form id="forgot-form">
+          <div class="form-group">
+            <label for="forgot-email">登録済みメールアドレス</label>
+            <input type="email" id="forgot-email" required>
+          </div>
+          <button type="submit">仮パスワードを再発行</button>
+        </form>
+        <p class="auth-switch"><a href="#" id="show-login-from-forgot">ログインに戻る</a></p>
+      </div>
+
+      <p id="auth-message" class="auth-message hidden"></p>
+    </section>
+
+    <!-- ===== 初回ログイン時のパスワード変更強制 ===== -->
+    <section id="force-password-section" class="card hidden">
+      <h2>初回ログインです。パスワードを設定してください</h2>
+      <form id="force-password-form">
+        <div class="form-group">
+          <label for="new-password">新しいパスワード（8文字以上）</label>
+          <input type="password" id="new-password" minlength="8" required>
+        </div>
+        <div class="form-group">
+          <label for="new-password-confirm">新しいパスワード（確認）</label>
+          <input type="password" id="new-password-confirm" minlength="8" required>
+        </div>
+        <button type="submit">パスワードを設定する</button>
+      </form>
+      <p id="force-password-message" class="auth-message hidden"></p>
+    </section>
+
+    <!-- ===== エントリーフォーム ===== -->
+    <section id="form-section" class="card hidden">
       <h2>エントリーシート</h2>
       <form id="pitch-form">
         <div class="form-group">
@@ -61,10 +153,55 @@
     </section>
 
     <section id="error-section" class="card hidden">
-      <p>⚠️ 審査中にエラーが発生しました。時間をおいて再度お試しください。</p>
+      <p>⚠️ エラーが発生しました。</p>
       <p id="error-detail" class="error-detail"></p>
       <button id="error-retry-btn">戻る</button>
     </section>
+
+    <!-- ===== マイページ（履歴一覧） ===== -->
+    <section id="mypage-section" class="card hidden">
+      <h2>マイページ：過去の審査履歴</h2>
+      <p id="mypage-empty" class="hidden">まだ審査履歴がありません。エントリーしてみましょう。</p>
+      <div id="entry-list"></div>
+
+      <hr class="divider">
+      <button id="withdraw-btn" class="btn-danger-outline">退会する（全データ削除）</button>
+    </section>
+
+    <!-- ===== エントリー編集モーダル ===== -->
+    <div id="edit-modal" class="modal hidden">
+      <div class="modal-content card">
+        <h2>エントリーを編集</h2>
+        <form id="edit-form">
+          <input type="hidden" id="edit-entry-id">
+          <div class="form-group">
+            <label for="edit-app-name">アプリ名</label>
+            <input type="text" id="edit-app-name" required>
+          </div>
+          <div class="form-group">
+            <label for="edit-app-summary">アプリの概要</label>
+            <textarea id="edit-app-summary" rows="3" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="edit-app-pitch">プレゼン内容</label>
+            <textarea id="edit-app-pitch" rows="4" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="edit-score">スコア（0〜100）</label>
+            <input type="number" id="edit-score" min="0" max="100" required>
+          </div>
+          <div class="form-group">
+            <label for="edit-comment">審査員コメント</label>
+            <textarea id="edit-comment" rows="4" required></textarea>
+          </div>
+          <div class="modal-actions">
+            <button type="button" id="edit-cancel-btn" class="btn-secondary">キャンセル</button>
+            <button type="submit">保存する</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
   </main>
 
   <footer class="footer">
@@ -72,6 +209,7 @@
   </footer>
 </div>
 
-<script src="app.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>
