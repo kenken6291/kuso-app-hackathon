@@ -1,7 +1,7 @@
 // ==============================
 // 設定：GAS_API_URLは app.js と同じ値に合わせてください
 // ==============================
-const GAS_API_URL = "https://script.google.com/macros/s/【ここにデプロイIDを貼り付け】/exec";
+const GAS_API_URL = "https://script.google.com/macros/s/AKfycbzSQ8MjcJM3UAVvPf7kGFEdnCdVUXJzj-IrqP9WWeELKC8CAHSfsWo7IMUIjEg72YXb/exec";
 
 const STORAGE_KEY = "kuso_app_session";
 
