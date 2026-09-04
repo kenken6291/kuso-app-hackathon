@@ -215,6 +215,38 @@ button:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
   margin-right: 4px;
 }
 
+/* ===== パスワード表示/非表示 ===== */
+.password-wrap {
+  position: relative;
+}
+
+.password-wrap input {
+  padding-right: 44px;
+}
+
+.pw-toggle-btn {
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: auto;
+  padding: 6px 10px;
+  background: transparent;
+  border: none;
+  font-size: 1.1rem;
+  line-height: 1;
+  color: var(--text-sub);
+}
+
+.pw-toggle-btn:hover {
+  transform: translateY(-50%);
+  opacity: 0.8;
+}
+
+.pw-toggle-btn.is-visible {
+  color: var(--accent2);
+}
+
 /* ===== 認証フォーム ===== */
 .auth-switch {
   text-align: center;

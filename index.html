@@ -40,7 +40,10 @@
           </div>
           <div class="form-group">
             <label for="login-password">パスワード</label>
-            <input type="password" id="login-password" required>
+            <div class="password-wrap">
+              <input type="password" id="login-password" required maxlength="128">
+              <button type="button" class="pw-toggle-btn" data-target="login-password" aria-label="パスワードを表示">👁</button>
+            </div>
           </div>
           <button type="submit">ログイン</button>
         </form>
@@ -57,11 +60,11 @@
         <form id="register-form">
           <div class="form-group">
             <label for="register-email">メールアドレス</label>
-            <input type="email" id="register-email" required>
+            <input type="email" id="register-email" required maxlength="200">
           </div>
           <div class="form-group">
             <label for="register-nickname">ニックネーム</label>
-            <input type="text" id="register-nickname" required>
+            <input type="text" id="register-nickname" required maxlength="30">
           </div>
           <div class="form-group form-group-checkbox">
             <label>
@@ -79,7 +82,7 @@
         <form id="forgot-form">
           <div class="form-group">
             <label for="forgot-email">登録済みメールアドレス</label>
-            <input type="email" id="forgot-email" required>
+            <input type="email" id="forgot-email" required maxlength="200">
           </div>
           <button type="submit">仮パスワードを再発行</button>
         </form>
@@ -95,11 +98,17 @@
       <form id="force-password-form">
         <div class="form-group">
           <label for="new-password">新しいパスワード（8文字以上）</label>
-          <input type="password" id="new-password" minlength="8" required>
+          <div class="password-wrap">
+            <input type="password" id="new-password" minlength="8" maxlength="128" required>
+            <button type="button" class="pw-toggle-btn" data-target="new-password" aria-label="パスワードを表示">👁</button>
+          </div>
         </div>
         <div class="form-group">
           <label for="new-password-confirm">新しいパスワード（確認）</label>
-          <input type="password" id="new-password-confirm" minlength="8" required>
+          <div class="password-wrap">
+            <input type="password" id="new-password-confirm" minlength="8" maxlength="128" required>
+            <button type="button" class="pw-toggle-btn" data-target="new-password-confirm" aria-label="パスワードを表示">👁</button>
+          </div>
         </div>
         <button type="submit">パスワードを設定する</button>
       </form>
@@ -112,17 +121,17 @@
       <form id="pitch-form">
         <div class="form-group">
           <label for="app-name">アプリ名</label>
-          <input type="text" id="app-name" placeholder="例：貼るだけで会議が終わるアプリ「ハラナカ」" required>
+          <input type="text" id="app-name" maxlength="100" placeholder="例：貼るだけで会議が終わるアプリ「ハラナカ」" required>
         </div>
 
         <div class="form-group">
           <label for="app-summary">アプリの概要</label>
-          <textarea id="app-summary" rows="3" placeholder="例：スマホをお腹に貼ると空腹度をSlackに通知する。それだけ。" required></textarea>
+          <textarea id="app-summary" rows="3" maxlength="500" placeholder="例：スマホをお腹に貼ると空腹度をSlackに通知する。それだけ。" required></textarea>
         </div>
 
         <div class="form-group">
           <label for="app-pitch">プレゼン内容（実用性の強引な主張）</label>
-          <textarea id="app-pitch" rows="5" placeholder="例：これにより「今日イチのラーメンを誰よりも早く感知できる」ため、行列社会に革命が起きます。医療費も削減されます。たぶん。" required></textarea>
+          <textarea id="app-pitch" rows="5" maxlength="1000" placeholder="例：これにより「今日イチのラーメンを誰よりも早く感知できる」ため、行列社会に革命が起きます。医療費も削減されます。たぶん。" required></textarea>
         </div>
 
         <button type="submit" id="submit-btn">
@@ -176,15 +185,15 @@
           <input type="hidden" id="edit-entry-id">
           <div class="form-group">
             <label for="edit-app-name">アプリ名</label>
-            <input type="text" id="edit-app-name" required>
+            <input type="text" id="edit-app-name" maxlength="100" required>
           </div>
           <div class="form-group">
             <label for="edit-app-summary">アプリの概要</label>
-            <textarea id="edit-app-summary" rows="3" required></textarea>
+            <textarea id="edit-app-summary" rows="3" maxlength="500" required></textarea>
           </div>
           <div class="form-group">
             <label for="edit-app-pitch">プレゼン内容</label>
-            <textarea id="edit-app-pitch" rows="4" required></textarea>
+            <textarea id="edit-app-pitch" rows="4" maxlength="1000" required></textarea>
           </div>
           <div class="form-group">
             <label for="edit-score">スコア（0〜100）</label>
@@ -192,7 +201,7 @@
           </div>
           <div class="form-group">
             <label for="edit-comment">審査員コメント</label>
-            <textarea id="edit-comment" rows="4" required></textarea>
+            <textarea id="edit-comment" rows="4" maxlength="500" required></textarea>
           </div>
           <div class="modal-actions">
             <button type="button" id="edit-cancel-btn" class="btn-secondary">キャンセル</button>

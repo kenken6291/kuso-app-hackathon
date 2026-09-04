@@ -67,6 +67,19 @@ function updateNav() {
   }
 }
 
+// ==== パスワード表示/非表示トグル ====
+document.querySelectorAll(".pw-toggle-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const target = document.getElementById(btn.dataset.target);
+    if (!target) return;
+    const isVisible = target.type === "text";
+    target.type = isVisible ? "password" : "text";
+    btn.textContent = isVisible ? "👁" : "🙈";
+    btn.classList.toggle("is-visible", !isVisible);
+    btn.setAttribute("aria-label", isVisible ? "パスワードを表示" : "パスワードを非表示");
+  });
+});
+
 // ==== 起動時の状態判定 ====
 function refreshView() {
   updateNav();
